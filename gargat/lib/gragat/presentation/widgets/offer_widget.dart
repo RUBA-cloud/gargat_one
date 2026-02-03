@@ -25,7 +25,7 @@ class OffersWidget extends ConsumerWidget {
           child: Text(
             "Offers",
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: const Color(0xFFFF7A00),
+                  color:iconColor,
                   fontWeight: FontWeight.w800,
                 ),
           ),

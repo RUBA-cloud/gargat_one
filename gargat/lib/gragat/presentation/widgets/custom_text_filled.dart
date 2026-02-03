@@ -40,7 +40,6 @@ class CustomTextFilled extends StatelessWidget {
         hintText: hintText,
         isDense: true,
         filled: true,
-        fillColor: theme.inputDecorationTheme.fillColor ?? Colors.grey[100],
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(color: Colors.transparent),
