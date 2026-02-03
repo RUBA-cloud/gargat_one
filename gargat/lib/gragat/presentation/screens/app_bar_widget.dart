@@ -1,0 +1,89 @@
+import 'package:flutter/material.dart';
+import 'package:gragat/core/colors.dart';
+
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
+        child: Row(
+          children: [
+            // Left: Delivering to + dropdown
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Delivering to:",
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: mainColor,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Current Location",
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: mainColor,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Icon(Icons.keyboard_arrow_down_rounded,
+                          color: mainColor, size: 20),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // Right: icons
+            _SquareIconButton(
+              icon: Icons.shopping_bag_outlined,
+              onTap: () {},
+            ),
+            const SizedBox(width: 10),
+            _SquareIconButton(
+              icon: Icons.favorite_border,
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SquareIconButton extends StatelessWidget {
+  const _SquareIconButton({required this.icon, required this.onTap});
+
+  final IconData icon;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: onTap,
+      child: Container(
+        width: 38,
+        height: 38,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(icon, color: const Color(0xFFFF7A00), size: 22),
+      ),
+    );
+  }
+}

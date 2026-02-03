@@ -43,9 +43,9 @@ class ServicesWidget extends ConsumerWidget {
               itemCount: services.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // ✅ صفّين
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 1.25,
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 4,
+                childAspectRatio: 1,
               ),
               itemBuilder: (context, index) {
                 final s = services[index];

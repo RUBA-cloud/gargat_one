@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gragat/core/colors.dart';
 import 'package:gragat/core/styles.dart';
+import 'package:gragat/gragat/presentation/screens/app_bar_widget.dart';
 import 'package:gragat/gragat/presentation/widgets/custom_text_filled.dart';
+import 'package:gragat/gragat/presentation/widgets/offer_widget.dart';
 import 'package:gragat/gragat/presentation/widgets/service_widget.dart';
 
 class HomeTab extends StatelessWidget {
@@ -18,7 +20,7 @@ class HomeTab extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.zero,
       children: [
-        //const AppBarWidget(),
+        const AppBarWidget(),
 
         Container(
           margin: const EdgeInsets.all(10),
@@ -43,11 +45,8 @@ class HomeTab extends StatelessWidget {
         const SizedBox(height: 10),
         const ServicesWidget(),
         const SizedBox(height: 10),
-
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text("Offers", style: subTextStyle),
-        ),
+OffersWidget(),
+      
 
         const SizedBox(height: 10),
 
