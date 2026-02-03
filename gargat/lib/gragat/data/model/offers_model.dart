@@ -1,18 +1,18 @@
-class OffersDataSouce {
+class OffersModel {
   final int id;
   final String? nameEn;
   final String? nameAr;
   final String? image;
 
-  const OffersDataSouce({
+  const OffersModel({
     required this.id,
     this.nameEn,
     this.nameAr,
     this.image,
   });
 
-  factory OffersDataSouce.fromJson(Map<String, dynamic> json) {
-    return OffersDataSouce(
+  factory OffersModel.fromJson(Map<String, dynamic> json) {
+    return OffersModel(
       id: (json['id'] as num).toInt(),
       nameEn: json['name_en'] as String?,
       nameAr: json['name_ar'] as String?,
@@ -29,13 +29,13 @@ class OffersDataSouce {
     };
   }
 
-  OffersDataSouce copyWith({
+  OffersModel copyWith({
     int? id,
     String? nameEn,
     String? nameAr,
     String? image,
   }) {
-    return OffersDataSouce(
+    return OffersModel(
       id: id ?? this.id,
       nameEn: nameEn ?? this.nameEn,
       nameAr: nameAr ?? this.nameAr,
