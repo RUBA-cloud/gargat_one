@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gragat/core/colors.dart';
 import 'package:gragat/core/styles.dart';
 
-class BasicProductWidget extends StatelessWidget {
+class BasicServicestDesign extends StatelessWidget {
   
-  const BasicProductWidget({super.key, 
+  const BasicServicestDesign({super.key, 
     required this.title,
     required this.imagePath,
     this.imageFillWidth =false,

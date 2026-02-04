@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gragat/core/colors.dart';
 import 'package:gragat/gragat/presentation/providers/HomeProvider/HomeProvider_notifier.dart';
-import 'package:gragat/gragat/presentation/widgets/basic_product_widget.dart';
+import 'package:gragat/gragat/presentation/widgets/basic_services_widget.dart';
 
 
 class ServicesWidget extends ConsumerWidget {
@@ -49,7 +49,7 @@ class ServicesWidget extends ConsumerWidget {
               ),
               itemBuilder: (context, index) {
                 final s = services[index];
-                return BasicProductWidget(
+                return BasicServicestDesign(
                   title: s.nameEn ?? s.nameAr ?? '-',
                   imagePath: s.image ?? '',
                   onTap: () {},

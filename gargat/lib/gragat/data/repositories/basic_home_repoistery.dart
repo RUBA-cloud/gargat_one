@@ -1,11 +1,14 @@
 import 'dart:developer';
 
+import 'package:gragat/gragat/data/model/gragat_model.dart';
 import 'package:gragat/gragat/data/model/offers_model.dart';
 import 'package:gragat/gragat/data/model/services_model.dart';
+
 /// ✅ Repository contract
 abstract class HomeRepository {
   List<ServicesModel> loadServices();
   List<OffersModel> loadOffers();
+  List<GarageModel> loadGrages();
   List<ServicesModel> filterServices(String query);
 }
 
@@ -28,14 +31,27 @@ class BasicHomeRepository implements HomeRepository {
     "AC Service",
   ];
 
+  final List<String> _namesGrage = const [
+    "Falcon Car Care Garage",
+    "Al Noor Auto Care",
+    "Al Noor Auto Care",
+  ];
+
   final List<String> _imagesServices = const [
     "${_imgPath}service_1.jpg",
     "${_imgPath}service_2.jpg",
     "${_imgPath}service_3.jpg",
   ];
 
+  final List<String> _imagesGrage = const [
+    "${_imgPath}grage_1.jpg",
+    "${_imgPath}grage_2.jpg",
+    "${_imgPath}grage_3.jpg",
+  ];
+
   late final List<ServicesModel> _services;
   late final List<OffersModel> _offers;
+  late final List<GarageModel> _garages;
 
   // ===================== SERVICES =====================
 
@@ -57,12 +73,27 @@ class BasicHomeRepository implements HomeRepository {
 
   @override
   List<ServicesModel> filterServices(String query) {
-    if (query.isEmpty) return _services;
+    // ✅ لو ما تم تحميل الخدمات قبل، حمّليها
+    if (!(_isServicesLoaded)) {
+      loadServices();
+    }
 
+    if (query.trim().isEmpty) return _services;
+
+    final q = query.toLowerCase().trim();
     return _services.where((s) {
-      final name = s.nameEn ?? '';
-      return name.toLowerCase().contains(query.toLowerCase());
+      final name = (s.nameEn ?? '').toLowerCase();
+      return name.contains(q);
     }).toList();
+  }
+
+  bool get _isServicesLoaded {
+    try {
+      // ignore: unnecessary_null_comparison
+      return _services.isNotEmpty;
+    } catch (_) {
+      return false;
+    }
   }
 
   // ===================== OFFERS =====================
@@ -81,5 +112,27 @@ class BasicHomeRepository implements HomeRepository {
 
     log('Offers loaded: ${_offers.length}');
     return _offers;
+  }
+
+  // ===================== GARAGES =====================
+
+  @override
+  List<GarageModel> loadGrages() {
+    _garages = List.generate(10, (index) {
+      return GarageModel(
+        id: index + 1,
+        nameEn: _namesGrage[index % _namesGrage.length],
+        nameAr: _namesGrage[index % _namesGrage.length],
+        image: _imagesGrage[index % _imagesGrage.length], // ✅ الصورة من قائمة الجراجات
+        reviewCount: 350,
+        reviewStarsCount: 5,
+        isTopService: true,
+        city: "Amman",
+        priceRange: "Price Range: AED 40 – 120",
+      );
+    });
+
+    log('Garages loaded: ${_garages.length}');
+    return _garages;
   }
 }

@@ -1,7 +1,7 @@
 
 
 
-import 'package:gragat/gragat/presentation/widgets/basic_product_widget.dart';
+import 'package:gragat/gragat/presentation/widgets/basic_services_widget.dart';
 
 import '../../../core/shared_packages.dart' ;
 import '../providers/HomeProvider/HomeProvider_notifier.dart';
@@ -46,7 +46,7 @@ class OffersWidget extends ConsumerWidget {
             itemBuilder: (context, index) {
               final o = offers[index];
 
-              return BasicProductWidget(
+              return BasicServicestDesign(
                 
                 title: o.nameEn ?? o.nameAr ?? "Promotion Title goes here",
                 imagePath: o.image!,

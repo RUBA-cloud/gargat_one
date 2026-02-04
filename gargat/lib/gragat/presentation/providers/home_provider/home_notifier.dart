@@ -1,7 +1,8 @@
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gragat/core/shared_packages.dart';
 import 'package:gragat/gragat/data/repositories/basic_home_repoistery.dart';
-import 'package:gragat/gragat/presentation/providers/HomeProvider/HomeProvider_state.dart';
+import 'package:gragat/gragat/presentation/providers/home_provider/home_state.dart';
+
 
 final homeRepositoryProvider = Provider<HomeRepository>((ref) {
   return BasicHomeRepository();
@@ -55,4 +56,14 @@ class HomeNotifier extends Notifier<HomeState> {
       state = state.copyWith(isLoadingOffers: false, error: e.toString());
     }
   }
+     void loadGrages() {
+    try {
+      state = state.copyWith(isLoadingOffers: true, error: null);
+      final data = _repo.loadGrages();
+      state = state.copyWith(grageList: data, isLoadingOffers: false);
+    } catch (e) {
+      state = state.copyWith(isLoadingOffers: false, error: e.toString());
+    }
+  }
+
 }

@@ -1,6 +1,7 @@
 
 import 'package:gragat/gragat/presentation/screens/app_bar_widget.dart';
 import 'package:gragat/gragat/presentation/widgets/custom_text_serach.dart';
+import 'package:gragat/gragat/presentation/widgets/graget_widget.dart';
 import 'package:gragat/gragat/presentation/widgets/offer_widget.dart';
 import 'package:gragat/gragat/presentation/widgets/service_widget.dart';
 
@@ -32,30 +33,7 @@ class HomeTab extends StatelessWidget {
 
         const SizedBox(height: 10),
 
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              Text("Grages", style: subTextStyle),
-              const SizedBox(width: 6),
-              Text(
-                "Avaliable Now",
-                style: setTextStyle(
-                  fontWight: FontWeight.w600,
-                  color: mainColor,
-                  fontSize: 13,
-                ),
-              ),
-              Icon(Icons.next_plan_rounded,color: Colors.red,)
-            ],
-          ),
-        ),
-        Row(children: [
-
-          Text("Fliter")
-        ],),
-
-        const SizedBox(height: 20),
+        GragetWidget(),
       ],
     );
   }

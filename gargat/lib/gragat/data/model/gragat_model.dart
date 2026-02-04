@@ -11,6 +11,7 @@ class GarageModel {
 
   final bool? isTopService;
   final bool? isFav;
+  final String?image;
 
   final int? reviewStarsCount;
   final int? reviewCount;
@@ -25,6 +26,7 @@ class GarageModel {
     this.priceRange,
     this.isTopService,
     this.isFav,
+    this.image,
     this.reviewStarsCount,
     this.reviewCount,
   });
@@ -40,6 +42,7 @@ class GarageModel {
       priceRange: json['price_range'] as String?,
       isTopService: _toBool(json['is_top_service']),
       isFav: _toBool(json['is_fav']),
+      image: json['image'],
       reviewStarsCount: (json['review_stars_count'] as num?)?.toInt(),
       reviewCount: (json['review_count'] as num?)?.toInt(),
     );
