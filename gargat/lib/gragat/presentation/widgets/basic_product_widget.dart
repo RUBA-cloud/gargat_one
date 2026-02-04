@@ -25,12 +25,13 @@ class BasicProductWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Stack(
-          fit: imageFillWidth? StackFit.loose:StackFit.expand,
+          fit: imageFillWidth? StackFit.passthrough:StackFit.expand,
           children: [
             // ✅ Image
             // ✅ Dark overlay (عشان النص يوضح)
             imageFillWidth?SizedBox(width: 300,child: imageWidget(),):imageWidget(),
-            Container(
+            Container( 
+              width:imageFillWidth? 300:0,
               decoration:setBoxDecoration(gradient: imageGradient
                 ), 
               ),     
@@ -43,7 +44,7 @@ class BasicProductWidget extends StatelessWidget {
                 title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: setTextStyle(fontWight: FontWeight.w700,color: whiteColor,fontSize: 12,
+                style: setTextStyle(fontWight: FontWeight.w400,color: whiteColor,fontSize: 14,
                   height: 1.1,
                 ),
               ),
