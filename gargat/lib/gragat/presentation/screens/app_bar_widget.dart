@@ -52,12 +52,12 @@ class AppBarWidget extends StatelessWidget {
               ),
         
               // Right: icons
-              _SquareIconButton(
+              iconButtonWidget(
                 icon: Icons.shopping_bag_outlined,
                 onTap: () {},
               ),
               const SizedBox(width: 10),
-              _SquareIconButton(
+              iconButtonWidget(
                 icon: Icons.favorite_border,
                 onTap: () {},
               ),
@@ -69,15 +69,10 @@ class AppBarWidget extends StatelessWidget {
   }
 }
 
-class _SquareIconButton extends StatelessWidget {
-  const _SquareIconButton({required this.icon, required this.onTap});
+  Widget iconButtonWidget({required IconData icon, required VoidCallback onTap})=>
 
-  final IconData icon;
-  final VoidCallback onTap;
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
+     InkWell(
       borderRadius: BorderRadius.circular(12),
       onTap: onTap,
       child: Container(
@@ -90,5 +85,5 @@ class _SquareIconButton extends StatelessWidget {
         child: GradientIcon(icon: icon, gradient: linearGradient, size: 22),
       ),
     );
-  }
-}
+
+

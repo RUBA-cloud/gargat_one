@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:gragat/core/shared_packages.dart';
+
 
 /// A simple filled text field with sensible defaults.
 ///
@@ -16,7 +17,7 @@ class CustomTextFilled extends StatelessWidget {
     this.hintText,
     this.obscureText = false,
     this.keyboardType,
-    this.onChanged, required Container suffixIcon,
+    this.onChanged, this.suffixIcon,
   });
 
   final TextEditingController? controller;
@@ -25,33 +26,29 @@ class CustomTextFilled extends StatelessWidget {
   final bool obscureText;
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
+  final Widget?suffixIcon;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
 
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
       keyboardType: keyboardType,
       onChanged: onChanged,
+    
       decoration: InputDecoration(
+        suffixIcon:suffixIcon ,
         labelText: labelText,
         hintText: hintText,
+        hintStyle: setTextStyle(fontWight: FontWeight.w300,fontSize: 12,color: lightGray),
         isDense: true,
         filled: true,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(color: Colors.transparent),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: const BorderSide(color: Colors.transparent),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(color: theme.colorScheme.primary),
-        ),
+        fillColor: whiteColor,
+        border: setOutllinedBorder(color:grayColor,radius: 8 ),
+        enabledBorder: setOutllinedBorder(color:grayColor,radius: 8 ),
+        focusedBorder: setOutllinedBorder(color: grayColor, radius: 8)
+        
       ),
     );
   }

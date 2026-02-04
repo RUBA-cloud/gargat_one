@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gragat/core/colors.dart';
-import 'package:gragat/gragat/presentation/providers/HomeProvider/HomeProvider_notifier.dart';
+
+
+
+import 'package:gragat/gragat/presentation/widgets/basic_product_widget.dart';
+
+import '../../../core/shared_packages.dart' ;
+import '../providers/HomeProvider/HomeProvider_notifier.dart';
 
 class OffersWidget extends ConsumerWidget {
   const OffersWidget({super.key});
@@ -43,9 +46,11 @@ class OffersWidget extends ConsumerWidget {
             itemBuilder: (context, index) {
               final o = offers[index];
 
-              return _OfferBanner(
+              return BasicProductWidget(
+                
                 title: o.nameEn ?? o.nameAr ?? "Promotion Title goes here",
-                imagePath: o.image ?? "assets/images/service_1.jpg",
+                imagePath: o.image!,
+                imageFillWidth: true,
                 onTap: () {},
               );
             },
@@ -56,67 +61,3 @@ class OffersWidget extends ConsumerWidget {
   }
 }
 
-class _OfferBanner extends StatelessWidget {
-  const _OfferBanner({
-    required this.title,
-    required this.imagePath,
-    required this.onTap,
-  });
-
-  final String title;
-  final String imagePath;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(16),
-      onTap: onTap,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: Stack(
-          children: [
-            SizedBox(
-              width: 300, // ✅ عرض الكرت مثل الصورة
-              height: double.infinity,
-              child: Image.asset(imagePath, fit: BoxFit.cover),
-            ),
-
-            // ✅ teal overlay مثل الصورة
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      blackColor,
-                      mainColor,
-                    ],
-                  ),
-                ),
-              ),
-            ),
-
-            Positioned(
-              left: 16,
-              right: 16,
-              bottom: 16,
-              child: Text(
-                title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  height: 1.1,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

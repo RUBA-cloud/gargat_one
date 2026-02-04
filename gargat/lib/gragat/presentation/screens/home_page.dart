@@ -1,10 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/material.dart';
 
-import 'package:gragat/core/colors.dart';
+import 'package:gragat/core/shared_packages.dart' ;
 import 'package:gragat/gragat/presentation/providers/HomeProvider/HomeProvider_notifier.dart';
 import 'package:gragat/gragat/presentation/screens/home_tab.dart' show HomeTab;
-import 'package:gragat/gragat/presentation/widgets/gradient_icons.dart';
 
 class HomePage  extends ConsumerWidget {
  const HomePage({super.key});
@@ -38,6 +35,7 @@ class HomePage  extends ConsumerWidget {
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: blackColor.withOpacity(0.18),
                   blurRadius: 14,
                   offset: const Offset(0, 6),
@@ -121,11 +119,11 @@ class _NavItem extends StatelessWidget {
               // ✅ orange indicator (مثل الصورة فوق الأيقونة)
              
 
-              GradientIcon(
+         isSelected?     GradientIcon(
                icon: icon,
                 size: 22,
                gradient: linearGradient,
-              ),
+              ):Icon(icon,color: whiteColor,),
               const SizedBox(height: 4),
               Text(
                 label,
@@ -135,7 +133,7 @@ class _NavItem extends StatelessWidget {
                   fontSize: 11,
                   height: 1,
                   fontWeight: FontWeight.w600,
-                  color: isSelected ? const Color(0xFFFF7A00) : subColor,
+                  color: whiteColor,
                 ),
               ),
             ],

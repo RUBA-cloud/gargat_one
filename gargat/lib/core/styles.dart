@@ -2,15 +2,17 @@
 
   /// Returns a boxed decoration with a subtle shadow and a border.
   BoxDecoration setBoxDecoration({
-    required BorderRadius borderRadius,
-    required Color borderColor,
+     BorderRadius? borderRadius,
+     Color? borderColor,
     Color? color,
     List<BoxShadow>? boxShadow,
+    Gradient ?gradient
   }) {
     return BoxDecoration(
       color: color ?? Colors.white,
       borderRadius: borderRadius,
-      border: Border.all(color: borderColor),
+      gradient: gradient,
+      border:borderColor!=null? Border.all(color: borderColor):null,
       boxShadow: boxShadow ?? [
         BoxShadow(
           // ignore: deprecated_member_use
@@ -36,6 +38,10 @@
         boxShadow: boxShadow,
       );
 
+OutlineInputBorder setOutllinedBorder({required Color color, required double radius})=>OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius),
+          borderSide:  BorderSide(color: color),
+        );
   /// Returns a default text style used across the app. Accepts overrides.
   TextStyle setTextStyle({
     Color? color,

@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// A reusable widget that paints an [Icon] with a [Gradient].
-///
-/// Example:
-/// ```dart
-/// GradientIcon(
-///   Icons.star,
-///   size: 28,
-///   gradient: LinearGradient(colors: [Colors.red, Colors.orange]),
-/// )
-/// ```
+
 class GradientIcon extends StatelessWidget {
   const GradientIcon({
     super.key,
@@ -26,8 +17,6 @@ class GradientIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use ShaderMask to apply the gradient to the icon. The icon's color
-    // should be opaque (white works well) so the shader colors are visible.
     return ShaderMask(
       shaderCallback: (bounds) => gradient.createShader(
         Rect.fromLTWH(0, 0, bounds.width, bounds.height),

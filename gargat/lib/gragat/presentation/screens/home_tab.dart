@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:gragat/core/colors.dart';
-import 'package:gragat/core/styles.dart';
+
 import 'package:gragat/gragat/presentation/screens/app_bar_widget.dart';
 import 'package:gragat/gragat/presentation/widgets/custom_text_serach.dart';
 import 'package:gragat/gragat/presentation/widgets/offer_widget.dart';
 import 'package:gragat/gragat/presentation/widgets/service_widget.dart';
+
+import '../../../core/shared_packages.dart' ;
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
