@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gragat/core/colors.dart';
-import 'package:gragat/gragat/presentation/providers/HomeProvider/HomeProvider_notifier.dart';
-import 'package:gragat/gragat/presentation/widgets/basic_services_widget.dart';
+import 'package:gragat/gragat/presentation/providers/home_provider/home_notifier.dart';
+import 'package:gragat/gragat/presentation/widgets/basic_services_design.dart';
 
 
 class ServicesWidget extends ConsumerWidget {

@@ -1,10 +1,10 @@
 
 
 
-import 'package:gragat/gragat/presentation/widgets/basic_services_widget.dart';
+import 'package:gragat/gragat/presentation/widgets/basic_services_design.dart';
 
 import '../../../core/shared_packages.dart' ;
-import '../providers/HomeProvider/HomeProvider_notifier.dart';
+import '../providers/home_provider/home_notifier.dart';
 
 class OffersWidget extends ConsumerWidget {
   const OffersWidget({super.key});

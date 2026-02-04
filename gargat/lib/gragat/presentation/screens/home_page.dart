@@ -1,6 +1,6 @@
 
 import 'package:gragat/core/shared_packages.dart' ;
-import 'package:gragat/gragat/presentation/providers/HomeProvider/HomeProvider_notifier.dart';
+import 'package:gragat/gragat/presentation/providers/home_provider/home_notifier.dart';
 import 'package:gragat/gragat/presentation/screens/home_tab.dart' show HomeTab;
 
 class HomePage  extends ConsumerWidget {

@@ -11,9 +11,8 @@ class AppBarWidget extends StatelessWidget {
 
     return SafeArea(
       bottom: false,
-      child: Card(
-        color: Colors.white,
-        elevation: 0,
+      child: Container(
+        color:whiteColor,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
           child: Row(

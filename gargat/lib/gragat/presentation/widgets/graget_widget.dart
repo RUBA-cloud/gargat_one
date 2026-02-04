@@ -1,7 +1,7 @@
 
 import 'package:gragat/core/shared_packages.dart';
 import 'package:gragat/gragat/data/model/gragat_model.dart';
-import '../providers/HomeProvider/HomeProvider_notifier.dart';
+import '../providers/home_provider/home_notifier.dart';
 
 class GragetWidget extends ConsumerWidget {
   const GragetWidget({super.key});
@@ -119,7 +119,7 @@ Widget _filterDropDown({
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: grayColor
+                        color: darkGray
                       ),
                 ),
               ),
@@ -220,7 +220,7 @@ Widget _filterDropDown({
                       "Top Services:",
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             fontWeight: FontWeight.w800,
-                            color: const Color(0xFF0D6E6E),
+                            color: mainColor
                           ),
                     ),
                     const SizedBox(height: 2),

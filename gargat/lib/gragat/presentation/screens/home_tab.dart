@@ -12,11 +12,7 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle subTextStyle = setTextStyle(
-      color: iconColor,
-      fontSize: 18,
-      fontWight: FontWeight.w600,
-    );
+   
 
     return ListView(
       padding: EdgeInsets.zero,
