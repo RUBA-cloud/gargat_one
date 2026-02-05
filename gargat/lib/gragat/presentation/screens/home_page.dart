@@ -1,11 +1,13 @@
 
-import 'package:gragat/core/shared_packages.dart' ;
+import 'package:gragat/core/shared_packages.dart';
 import 'package:gragat/gragat/presentation/providers/home_provider/home_notifier.dart';
+import 'package:gragat/gragat/presentation/screens/gargat_tab.dart';
 import 'package:gragat/gragat/presentation/screens/home_tab.dart' show HomeTab;
 
-class HomePage  extends ConsumerWidget {
- const HomePage({super.key});
- 
+import 'package:svg_image/svg_image.dart';
+
+class HomePage extends ConsumerWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -13,24 +15,25 @@ class HomePage  extends ConsumerWidget {
     final notifier = ref.read(HomeProvider.notifier);
 
     final pages = <Widget>[
-      HomeTab(),
+      const HomeTab(),
       const Center(child: Text('My Cars')),
       const Center(child: Text('Services')),
-      const Center(child: Text('Garages')),
+      GargatTab(),
       const Center(child: Text('Profile')),
     ];
 
-    return Scaffold(
-      body: SafeArea(child: pages[state.selectedIndex]),
+    final selectedIndex = state.selectedIndex.clamp(0, pages.length - 1);
 
-      // ✅ Custom bottom bar like the image
+    return Scaffold(
+      body: SafeArea(child: pages[selectedIndex]),
+
       bottomNavigationBar: SafeArea(
         top: false,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           child: Container(
-            height: 67, // ✅ مثل الصورة (375x67)
-            decoration: BoxDecoration(
+            height: 67,
+            decoration: setBoxDecoration(
               color: mainColor,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
@@ -48,36 +51,41 @@ class HomePage  extends ConsumerWidget {
                   index: 0,
                   label: 'Home',
                   icon: Icons.home_filled,
-                  selectedIndex: state.selectedIndex,
+                  selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
+                  svgAsset: 'assets/images/home.svg',
                 ),
                 _NavItem(
                   index: 1,
                   label: 'My Cars',
                   icon: Icons.directions_car_filled_rounded,
-                  selectedIndex: state.selectedIndex,
+                  selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
+                  svgAsset: 'assets/images/car.svg',
                 ),
                 _NavItem(
                   index: 2,
                   label: 'Services',
                   icon: Icons.room_service_rounded,
-                  selectedIndex: state.selectedIndex,
+                  selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
+                  svgAsset: 'assets/images/setting.svg',
                 ),
                 _NavItem(
                   index: 3,
                   label: 'Garages',
                   icon: Icons.home_repair_service_rounded,
-                  selectedIndex: state.selectedIndex,
+                  selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
+                  svgAsset: 'assets/images/hous.svg',
                 ),
                 _NavItem(
                   index: 4,
                   label: 'Profile',
                   icon: Icons.person_rounded,
-                  selectedIndex: state.selectedIndex,
+                  selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
+                  svgAsset: null, // ✅ بدون SVG
                 ),
               ],
             ),
@@ -95,6 +103,7 @@ class _NavItem extends StatelessWidget {
     required this.icon,
     required this.selectedIndex,
     required this.onTap,
+    required this.svgAsset,
   });
 
   final int index;
@@ -102,10 +111,40 @@ class _NavItem extends StatelessWidget {
   final IconData icon;
   final int selectedIndex;
   final ValueChanged<int> onTap;
+  final String? svgAsset;
 
   @override
   Widget build(BuildContext context) {
     final bool isSelected = selectedIndex == index;
+
+    Widget iconWidget;
+
+    // ✅ لو في SVG استخدميه، لو لا استخدمي Icon عادي
+    if (svgAsset != null && svgAsset!.isNotEmpty) {
+      iconWidget = isSelected
+          ? GradientIcon(
+              svgImage: svgAsset, // GradientIcon لازم يدعم null؟ هنا مش null
+              icon: icon,
+              size: 22,
+              gradient: linearGradient,
+            )
+          : SvgImage(
+              svgAsset!,
+              type: PathType.assets,
+              // لو نسختك تدعم color:
+              color: whiteColor,
+              // وإلا احذفي color
+              // width: 22,
+              // height: 22,
+            );
+    } else {
+      // ✅ fallback بدون SVG
+      iconWidget = Icon(
+        icon,
+        size: 22,
+        color: isSelected ? whiteColor : whiteColor,
+      );
+    }
 
     return Expanded(
       child: InkWell(
@@ -116,14 +155,7 @@ class _NavItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // ✅ orange indicator (مثل الصورة فوق الأيقونة)
-             
-
-         isSelected?     GradientIcon(
-               icon: icon,
-                size: 22,
-               gradient: linearGradient,
-              ):Icon(icon,color: whiteColor,),
+              iconWidget,
               const SizedBox(height: 4),
               Text(
                 label,

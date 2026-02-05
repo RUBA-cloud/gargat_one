@@ -1,6 +1,7 @@
 
 
 import 'package:gragat/core/shared_packages.dart' ;
+import 'package:svg_image/svg_image.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
@@ -20,7 +21,7 @@ class CustomSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
 
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       
   
       child:     Expanded(
@@ -39,10 +40,11 @@ class CustomSearchBar extends StatelessWidget {
                 color: lightBlueColor,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child:  Icon(
-                Icons.search_rounded,
-                color:whiteColor,
-                size: 22,
+              child:  Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 2),
+                child: SvgImage("assets/images/search.svg", type: PathType.assets, width: 30,height: 30,
+                            
+                ),
               ),
             
             

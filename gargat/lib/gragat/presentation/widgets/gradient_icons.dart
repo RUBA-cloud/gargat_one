@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:gragat/core/shared_packages.dart';
+import 'package:svg_image/svg_image.dart';
 
 
 class GradientIcon extends StatelessWidget {
@@ -8,12 +9,15 @@ class GradientIcon extends StatelessWidget {
     required this.gradient,
     this.size = 26.0,
     this.semanticLabel,
+    this.svgImage
   });
 
-  final IconData icon;
+  final IconData? icon;
   final Gradient gradient;
   final double size;
   final String? semanticLabel;
+    final String? svgImage;
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +26,10 @@ class GradientIcon extends StatelessWidget {
         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
       ),
       blendMode: BlendMode.srcIn,
-      child: Icon(
+      child:svgImage!=null?SvgImage(svgImage!, type: PathType.assets) : Icon(
         icon,
         size: size,
-        color: Colors.white,
+        color: whiteColor,
         semanticLabel: semanticLabel,
       ),
     );
@@ -39,6 +43,7 @@ Widget gradientIcon(
   required Gradient gradient,
   double size = 26.0,
   String? semanticLabel,
+  String? svgImage,
 }) {
   return GradientIcon(
     icon: icon,
