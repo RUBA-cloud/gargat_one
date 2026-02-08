@@ -1,40 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 
 import 'package:gragat/core/shared_packages.dart';
 import 'package:gragat/gragat/presentation/widgets/custom_text_serach.dart';
 import 'package:gragat/gragat/presentation/widgets/garage_card.dart';
-import 'package:gragat/gragat/presentation/widgets/icons_widget.dart';
 import '../providers/home_provider/home_notifier.dart';
 
-class GargatTab extends ConsumerStatefulWidget {
+class GargatTab extends ConsumerWidget {
   const GargatTab({super.key});
 
   @override
-  ConsumerState<GargatTab> createState() => _GargatTabState();
-}
-
-class _GargatTabState extends ConsumerState<GargatTab> {
-  late final TextEditingController _searchController;
-
-  @override
-  void initState() {
-    super.initState();
-    _searchController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(HomeProvider);
     final notifier = ref.read(HomeProvider.notifier);
 
-    // ✅ تحميل مرة واحدة إذا فاضي
+    // ✅ تحميل مرة واحدة (ما رح يعيدها إذا صار في بيانات)
     if (state.grageList.isEmpty) {
       Future.microtask(() => notifier.loadGrages());
     }
@@ -45,34 +24,12 @@ class _GargatTabState extends ConsumerState<GargatTab> {
       child: ListView(
         children: [
           const SizedBox(height: 8),
-      
+
           // ✅ Header: Back + Title centered
-          Container(padding: EdgeInsets.symmetric(horizontal: 15),
-            height: 44,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButtonWidget(
-                    icon: Icons.arrow_back,
-                    onTap: () => Navigator.of(context).maybePop(),
-                  ),
-                ),
-                Text(
-                  "Garages",
-                  style: TextStyle(
-                    color: mainColor,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-          ),
-      
+        
+CustomAppBarWidget(title: "Garagat"),
           const SizedBox(height: 5),
-      
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Text(
@@ -84,20 +41,24 @@ class _GargatTabState extends ConsumerState<GargatTab> {
               ),
             ),
           ),
-      
+
           const SizedBox(height: 10),
-      
+
+          // ✅ بدون Controller (مناسب لـ Stateless)
           CustomSearchBar(
-            controller: _searchController,
             hintText: "Enter the name of the Garage",
-            onTapSearch: () {
-              // لو عندك فلترة في notifier:
-              // notifier.searchGarages(_searchController.text);
+            onChanged: (value) {
+              // لو عندك فلترة في notifier
+              // notifier.searchGarages(value);
             },
+            onTapSearch: () {
+              // إذا بدك زر البحث يشتغل
+              // notifier.searchGarages(state.searchText);
+            }, controller: TextEditingController(),
           ),
-      
+
           const SizedBox(height: 5),
-      
+
           // ✅ List
           Padding(
             padding: const EdgeInsets.all(15.0),

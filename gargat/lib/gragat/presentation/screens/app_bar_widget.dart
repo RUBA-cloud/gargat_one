@@ -1,4 +1,5 @@
 
+import 'package:gragat/core/contsant.dart';
 import 'package:gragat/core/shared_packages.dart'; // فيه setBoxDecoration غالبًا
 import 'package:gragat/gragat/presentation/widgets/icons_widget.dart';
 
@@ -62,13 +63,13 @@ class AppBarWidget extends StatelessWidget {
 
             // Right icons
             IconButtonWidget(
-              svgAsset: "assets/images/gift.svg", icon: null, onTap: () {  },
+              svgAsset: "$assetsImage/gift.svg", icon: null, onTap: () {  },
               
             ),
             SizedBox(width: 5,),
               // Right icons
             IconButtonWidget(
-              svgAsset: "assets/images/heart.svg", icon: null, onTap: () {  },
+              svgAsset: "$assetsImage/heart.svg", icon: null, onTap: () {  },
               
             ),
            

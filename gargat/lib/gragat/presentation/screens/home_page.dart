@@ -1,4 +1,5 @@
 
+import 'package:gragat/core/contsant.dart';
 import 'package:gragat/core/shared_packages.dart';
 import 'package:gragat/gragat/presentation/providers/home_provider/home_notifier.dart';
 import 'package:gragat/gragat/presentation/screens/gargat_tab.dart';
@@ -53,7 +54,7 @@ class HomePage extends ConsumerWidget {
                   icon: Icons.home_filled,
                   selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
-                  svgAsset: 'assets/images/home.svg',
+                  svgAsset: '$assetsImage/home.svg',
                 ),
                 _NavItem(
                   index: 1,
@@ -61,7 +62,7 @@ class HomePage extends ConsumerWidget {
                   icon: Icons.directions_car_filled_rounded,
                   selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
-                  svgAsset: 'assets/images/car.svg',
+                     svgAsset: '$assetsImage/car.svg',
                 ),
                 _NavItem(
                   index: 2,
@@ -69,7 +70,7 @@ class HomePage extends ConsumerWidget {
                   icon: Icons.room_service_rounded,
                   selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
-                  svgAsset: 'assets/images/setting.svg',
+                  svgAsset:'$assetsImage/setting.svg',
                 ),
                 _NavItem(
                   index: 3,
@@ -77,7 +78,8 @@ class HomePage extends ConsumerWidget {
                   icon: Icons.home_repair_service_rounded,
                   selectedIndex: selectedIndex,
                   onTap: notifier.setSelectedIndex,
-                  svgAsset: 'assets/images/hous.svg',
+                  
+                  svgAsset: '$assetsImage/house-2.svg',
                 ),
                 _NavItem(
                   index: 4,
